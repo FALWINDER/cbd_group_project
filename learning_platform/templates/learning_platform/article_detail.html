@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ article.name }} - Article Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 70px;
+        }
+
+        .navbar-custom {
+            background-color: #000;
+        }
+
+        .btn-accent {
+            background-color: #00b58d;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-accent:hover {
+            background-color: #009e7a;
+        }
+
+        .btn-outline-accent {
+            border-color: #00b58d;
+            color: #00b58d;
+        }
+
+        .btn-outline-accent:hover {
+            background-color: #00b58d;
+            color: white;
+        }
+
+        .article-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .article-card h1 {
+            font-weight: 600;
+        }
+
+        .article-label {
+            font-weight: 500;
+        }
+
+        .article-value {
+            color: #333;
+        }
+
+        @media (max-width: 576px) {
+            .article-card {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-file-alt"></i> Article Manager</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<section class="py-5">
+    <div class="container">
+        <div class="article-card">
+            <h1 class="text-primary mb-4">{{ article.name }}</h1>
+            <hr>
+            <div class="row gy-3">
+                <div class="col-md-6"><span class="article-label">Born:</span> <span class="article-value">{{ article.born }}</span></div>
+                <div class="col-md-6"><span class="article-label">Died:</span> <span class="article-value">{{ article.died }}</span></div>
+                <div class="col-md-6"><span class="article-label">Nationality:</span> <span class="article-value">{{ article.nationality }}</span></div>
+                <div class="col-md-6"><span class="article-label">Known For:</span> <span class="article-value">{{ article.known_for }}</span></div>
+                <div class="col-md-6"><span class="article-label">Notable Work:</span> <span class="article-value">{{ article.notable_work }}</span></div>
+                <div class="col-md-6"><span class="article-label">Year:</span> <span class="article-value">{{ article.year }}</span></div>
+                <div class="col-md-6"><span class="article-label">Medium:</span> <span class="article-value">{{ article.medium }}</span></div>
+                <div class="col-md-6"><span class="article-label">Dimensions:</span> <span class="article-value">{{ article.dimensions }}</span></div>
+                <div class="col-md-6"><span class="article-label">Location:</span> <span class="article-value">{{ article.location }}</span></div>
+                <div class="col-md-6"><span class="article-label">Designed By:</span> <span class="article-value">{{ article.designed_by }}</span></div>
+                <div class="col-md-6"><span class="article-label">Developer:</span> <span class="article-value">{{ article.developer }}</span></div>
+                <div class="col-12 mt-3">
+                    <span class="article-label">About:</span>
+                    <p class="mt-2 article-value">{{ article.about }}</p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-between mt-4 flex-wrap">
+                <a href="{% url 'home' %}" class="btn btn-outline-accent mb-2">← Back to Home</a>
+
+                {% if is_tutor or user.is_superuser %}
+                    <div>
+                        <a href="/admin/learning_platform/article/{{ article.id }}/change/" class="btn btn-warning me-2 mb-2">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a href="/admin/learning_platform/article/{{ article.id }}/delete/" class="btn btn-danger mb-2">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bootstrap Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

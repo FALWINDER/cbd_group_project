@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About - CBD Group</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: Arial, sans-serif;
+        }
+        .navbar-custom {
+            background-color: #000;
+        }
+        .navbar-nav .nav-link {
+            font-weight: bold;
+        }
+        .about-section {
+            padding: 60px 20px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+            margin-top: 40px;
+        }
+        .about-section h1 {
+            font-weight: bold;
+            color: #000;
+        }
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #333;
+        }
+        .highlight-box {
+            background-color: #eafaf1;
+            border-left: 5px solid #00b894;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .highlight-box h5 {
+            color: #00b894;
+        }
+        ul li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <i class="fas fa-leaf"></i> CBD Group
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#">About</a></li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- About Section -->
+<div class="container about-section">
+    <h1 class="text-center mb-4">About CBD Group</h1>
+    <p>
+        CBD Group is a collaborative team of developers dedicated to building digital learning platforms
+        that support school students in exploring subjects like <strong>Art</strong>, <strong>Mathematics</strong>, and <strong>Technology</strong>.
+        Our goal is to make learning more engaging, accessible, and interactive.
+    </p>
+
+    <p>
+        This platform was developed using an Agile methodology, working closely with educators and clients to refine features
+        and provide the best experience for students, tutors, and administrators. It includes curated articles, biographies,
+        and references to key events, people, and concepts in each subject.
+    </p>
+
+    <div class="highlight-box">
+        <h5><i class="fas fa-users"></i> Who Can Use This Platform?</h5>
+        <ul>
+            <li><strong>Students:</strong> Can browse and search articles by category or keyword.</li>
+            <li><strong>Tutors:</strong> Can add and update articles relevant to their subject areas.</li>
+            <li><strong>Administrators:</strong> Can manage all content and users on the platform.</li>
+        </ul>
+    </div>
+
+    <p class="mt-4">
+        This project is part of an initiative to enhance digital education using modern tools such as Django, Bootstrap, and responsive web design.
+        We are continuously improving based on user feedback.
+    </p>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
